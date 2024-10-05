@@ -2,81 +2,26 @@
 
 
 {% block head %}
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Leckerli+One">
-
-    <style>
-        .animation--fade-titles {
-            color: DodgerBlue;
-            animation-duration: 24s;
-            animation-name: fade-title;
-            animation-delay: 0;
-            animation-iteration-count: infinite;
-            animation-direction: forward;
-        }
-
-        @keyframes fade-title {
-            0%  {color: DodgerBlue;}
-            50% {color: DeepPink;}
-            100% {color: DodgerBlue;}
-        }
-    </style>
 
 {% endblock %}
-
-<header class="container p-3 text">
-    <div class="row">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="{% url 'home' %}">
-                <h3 class="animation--fade-titles" style='font-family: "Leckerli One", serif; color:#0055aa;'>Bang! Bang!</h3>
-            </a>
-        </div>
-    </div>
-    <br/>
-    <div class="row">
-        <div id="karmactive" class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start p-1">
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><button class="w3-btn w3-deep-purple w3-padding-small w3-round-large w3-hover-pink active"><a href="{% url 'home' %}" class="nav-link px-2 text-white active" aria-current="page">Home</a></button></li>
-                <li>&nbsp; &nbsp;</li>
-                {% if user.is_authenticated %}
-                    <li><button class="w3-btn w3-purple w3-padding-small w3-round-large w3-hover-green"><a href="#" class="nav-link px-2 text-white">Documents</a></button></li>
-                    <li>&nbsp; &nbsp;</li>
-                    <li><button class="w3-btn w3-purple w3-padding-small w3-round-large w3-hover-green"><a href="#" class="nav-link px-2 text-white">Themes</a></button></li>
-                    <li>&nbsp; &nbsp;</li>
-                    <li><button class="w3-btn w3-purple w3-padding-small w3-round-large w3-hover-green"><a href="#" class="nav-link px-2 text-white">About</a></button></li>
-                {% endif %}
-            </ul>
+<nav class="orange darken-4" role="navigation">
+    <div class="nav-wrapper container">
+        <ul class="left hide-on-med-and-down">        
+            <li><a id="logo-container" href="{% url 'home' %}" class="brand-logo" style='font-family: "Leckerli One", serif; text-shadow: 2px 2px 2px #4e342e;'>Karmacanix</a></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+            <li><a class="waves-effect waves-light btn brown darken-2" href="#">Navbar Link</a></li>
             {% if user.is_authenticated %}
-            <div class="dropdown text-end">
-                <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-solid fa-gear fa-2xl"></i>
-                </a>
-                <ul class="dropdown-menu text-small">
-                    <li><a class="dropdown-item" href="{% url 'account_settings' %}">Settings</a></li>
-                    <li>&nbsp; &nbsp;</li>
-                    <li><a class="dropdown-item" href="{% url 'logout' %}">Sign out</a></li>
-                </ul>
-            </div>
+                <li><a class="waves-effect waves-light btn brown darken-2" href="{% url 'account_settings' %}"><i class="material-icons left">settings</i>Settings</a></li>
+                <li><a class="waves-effect waves-light btn brown darken-2" href="{% url 'logout' %}"><i class="material-icons left">exit_to_app</i>Sign out</a></li>
             {% else %}
-            <div class="text-end">
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><button class="w3-btn w3-blue w3-padding-small w3-round-large w3-hover-pink"><a href="{% url 'login' %}" class="nav-link px-2 text-white">Login</a></button></li>
-                    <li>&nbsp; &nbsp;</li>
-                    <li><button class="w3-btn w3-black w3-padding-small w3-round-large w3-hover-red"><a href="{% url 'signup' %}" class="nav-link px-2 text-white">Sign-up</a></button></li>
-                </ul>
-            </div>
+                <li><a class="waves-effect waves-light btn brown darken-2" href="{% url 'login' %}"><i class="material-icons left">perm_identity</i>Login</a></li>
+                <li><a class="waves-effect waves-light btn brown darken-2" href="{% url 'signup' %}"><i class="material-icons left">person_add</i>Sign-up</a></li>
             {% endif %}
-        </div>
+        </ul>
+        <ul id="nav-mobile" class="sidenav">
+            <li><a href="#">Navbar Link</a></li>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
-</header>
-<script>
-    // Add active class to the current button (highlight it)
-    var header = document.getElementById("karmactive");
-    var btns = header.getElementsByClassName("w3-btn");
-    for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function() {
-            var current = document.getElementsByClassName("active");
-            current[0].className = current[0].className.replace(" active", "");
-            this.className += " active";
-        });
-    }
-</script>
+</nav>

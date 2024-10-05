@@ -1,8 +1,5 @@
 {% extends "home/base.html" %}
 {% load static %}
-{% load bootstrap5 %}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
 {% block content %}
 <body>
 
@@ -13,26 +10,39 @@
           <p>Please login to see this page.</p>
       {% endif %}
   {% endif %}
+  <main>
+    <div class="container">
+      <div class="row">
+        <div class="container">
+          <div class="card brown darken-2">
+            <div class="card-content white-text">
+              <span class="card-title"><h3>Please sign in</h3></span>
+              <p>Enter your username and password. </p>
+              <form method="post" action="{% url 'signup' %}">
+                
+                  <div class="input-field">
+                    <input id="email" type="email" class="validate">
+                    <label for="email">Email</label>
+                  </div>
+                
+                
+                  <div class="input-field">
+                    <input id="password" type="password" class="validate">
+                    <label for="password">Password</label>
+                  </div>
+                <input type="hidden" name="next" value="{{ next }}">
+              </form>
+            </div>
+            <div class="card-action">
+              <a class="waves-effect waves-light btn-large deep-orange accent-3"><i class="material-icons left">person_add</i>Submit</a>
+            </div>
+          </div><p><a href="{% url 'password_reset' %}">Lost password?</a></p> 
+        </div>             
+      </div>
+    </div>
+  </main>
 
-  <div class="container my-5">
-    <main class="form-signin w-100 m-auto border bg-body-tertiary rounded-3">
-      <form method="post" action="{% url 'signup' %}">
-        {% csrf_token %}
-        <h2 class="h3 mb-3 fw-normal">Please sign in</h2>
-        {% if messages %}
-          {% bootstrap_messages %}
-        {% endif %}
-        {% bootstrap_form form %}
-        {% buttons %}
-          <button type="submit" class="btn btn-primary">
-            Submit
-          </button>
-        {% endbuttons %}
-        <input type="hidden" name="next" value="{{ next }}">
-      </form>
-      {# Assumes you set up the password_reset view in your URLconf #}
-      <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-    </main>
-  </div>
+
+  
 </body>
 {% endblock %}

@@ -1,51 +1,82 @@
 {% extends "home/base.html" %}
-
 {% load static %}
-{% load bootstrap5 %}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
 
 {% block content %}
-    <div class="container my-5">
-        <div class="p-5 bg-body-tertiary rounded-3">
-            {% if user.is_authenticated %}
-                <h2 class="text-body-emphasis">{{ user.username }}'s account settings page.</h2>
-                <br/>
-                {% if messages %}
-                    {% bootstrap_messages %}
-                {% endif %}
-                <ul>
-                    <li><p>{{ user.email }}</p></li>
-                    <li><p>{{ name }}</p></li>
-                    <li>
-                        <p>Staff: &nbsp;
-                            {% if user.is_staff %}
-                                <i class="fa-solid fa-circle-check fa-2xl text-success"></i>
-                            {% else %}
-                                <i class="fa-solid fa-circle-xmark fa-2xl text-alert"></i>
-                            {% endif %}
-                        </p>
-                    </li>
-                    <li>
-                        <p>Active: &nbsp;
-                            {% if user.is_active %}
-                                <i class="fa-solid fa-circle-check fa-2xl text-success"></i>
-                            {% else %}
-                                <i class="fa-solid fa-circle-xmark fa-2xl text-alert"></i>
-                            {% endif %}
-                        </p>
-                    </li>
-                    <li><a href="{% url 'password_change' %}">Change your password.</a></li>
-                </ul>
-                <br/>
-            {% else %} 
-                <h3 class="text-body-emphasis">Join or login!</h3>
-                <ul>
-                    <li><a href="{% url 'signup' %}">Sign-up!</a></li>
-                    <li><a href="{% url 'login' %}">Login</a></li>
-                </ul>
-                <br/>
-            {% endif %}
-        </div>
-    </div>
+
+    <body>
+        <main>
+          <div class="container">
+            <div class="row">
+                {% if user.is_authenticated %}
+              <div class="container">
+                <div class="card brown darken-2">
+                  <div class="card-content white-text">
+                    <span class="card-title"><h3>Profile</h3></span>
+                    <p>Update your details.</p>
+                    <form>
+                        <div class="row">
+                            <div class="input-field">
+                                <input id="email" type="email" class="validate">
+                                <label for="email">{{ user.email }}</label>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <input placeholder="{{ first_name }}" id="first_name" type="text" class="validate">
+                            <label for="first_name">{{user.first_name}}</label>
+                          </div>
+                        <div class="row">
+                            <div class="input-field">
+                                <input id="last_name" type="text" class="validate">
+                                <label for="last_name">{{ user.last_name }}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                       
+                                {% if user.is_staff %}
+                                <p>
+                                    <label>
+                                      <input type="checkbox" checked="checked"/>
+                                      <span>Staff</span>
+                                    </label>
+                                  </p>
+                                {% else %}
+                                <p>
+                                    <label>
+                                      <input type="checkbox" />
+                                      <span>Staff</span>
+                                    </label>
+                                  </p>
+                                {% endif %}
+                         
+                        </div>
+                        <div class="row">
+                                {% if user.is_active %}
+                                <p>
+                                    <label>
+                                      <input type="checkbox" checked="checked"/>
+                                      <span>Active</span>
+                                    </label>
+                                  </p>
+                                {% else %}
+                                <p>
+                                    <label>
+                                      <input type="checkbox" />
+                                      <span>Active</span>
+                                    </label>
+                                  </p>
+                                {% endif %}
+                            
+                        </div>
+                    </form>
+                  </div>
+                  <div class="card-action">
+                    <a class="waves-effect waves-light btn-large deep-orange accent-3"><i class="material-icons left">upload</i>Update</a>
+                  </div>
+                </div><p><a href="{% url 'password_change' %}">Change your password.</a></p> 
+              </div>  
+              {% endif %}           
+            </div>
+          </div>
+        </main>
+      </body>
 {% endblock %}

@@ -1,20 +1,23 @@
 {% extends "home/base.html" %}
 
 {% load static %}
-{% load bootstrap5 %}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
 
 {% block content %}
 <body>
-    <div class="container my-5">
-        <div class="p-5 text-center bg-body-tertiary rounded-3">
-            <h2 class="w3-jumbo text-success">Success!</h2>
-            {% if messages %}
-                {% bootstrap_messages %}
-            {% endif %}
-            <p>You are logged out.</p>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="container">
+                    <div class="card brown darken-2">
+                        <div class="card-content white-text">
+                            <span class="card-title"><h3>Success!</h3></span>
+                            <p>You are logged out.</p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </main>
 </body>
 {% endblock %}

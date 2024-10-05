@@ -12,11 +12,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 
-from dotenv import load_dotenv
-
-load_dotenv('.env')
-
-
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,7 +34,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'dotenv',
-    'bootstrap5',
     'home',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -117,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'NZ'
 
 USE_I18N = True
 
