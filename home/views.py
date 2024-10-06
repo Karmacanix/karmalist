@@ -35,7 +35,7 @@ def home(request):
     if request.user.is_authenticated:
         un = get_complete_name(request)
         
-    sitename = 'karma-base'
+    sitename = 'karmasite'
     return render( request, 'home/home.html', {"sitename": sitename, "un" : un })
 
 
