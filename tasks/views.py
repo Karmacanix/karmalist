@@ -5,10 +5,30 @@ from tasks.models import Task, TaskList
 # Create your views here.
 
 
-class TaskList(ListView):
+class TaskListView(ListView):
     model = TaskList
-    fields = ['title', 'owner']
-	# def get_queryset(self):
-	# 	user = self.request.user
-	# 	users_project_list = ProjectTeam.objects.filter(user=user).values_list('project', flat=True)
-	# 	return Project.objects.filter(id__in=users_project_list)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["user_task_list"] = TaskList.objects.filter(owner=self.request.user)
+        return context
+    # def get_queryset(self):
+    #     user = self.request.user
+    #     users_task_list = TaskList.objects.filter(owner=user)
+    #     return users_task_list
+
+
+class TaskView(ListView):
+    model = Task
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # need task list from request something like request.kwargs.get['task_list id] 
+        context["parentlist"] = TaskList.objects.get(id=self.kwargs['tasklist_id'])
+        context["list_tasks"] = Task.objects.filter(task_list=self.kwargs['tasklist_id'])
+        #context["user_task_list"] = TaskList.objects.filter(owner=self.request.user)
+        return context
+    # def get_queryset(self):
+    #     user = self.request.user
+    #     users_task_list = TaskList.objects.filter(owner=user)
+    #     return users_task_list

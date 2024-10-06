@@ -17,7 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from tasks.views import TaskListView, TaskView
+
 urlpatterns = [
-    path('', include('home.urls')),
-    path('admin/', admin.site.urls),
+    path('list/', TaskListView.as_view(), name='task_list'),
+    path('list/<int:tasklist_id>/', TaskView.as_view(), name='tasks'),
 ]

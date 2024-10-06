@@ -1,0 +1,42 @@
+{% extends "home/base.html" %}
+{% load static %}
+{# Load the tag library #}
+
+{# Load CSS and JavaScript #}
+{% block content %}
+<body>
+  <main>
+    <div class="container">
+      <div class="row">
+        <div class="container">
+          {% if user.is_authenticated %}
+          <h3>{{ parentlist.title }}</h3>
+          <table class='highlight'>
+            <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Due</th>
+                  <th>Status</th>
+                  <th>Assigned</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for lt in list_tasks %}
+                <tr>
+                  <td>{{ lt.title }}</td>
+                  <td>{{ lt.due_date }}</td>
+                  <td>{{ lt.task_status }}</td>
+                  <td>{{ lt.assigned }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+            <a class="waves-effect waves-light btn-large deep-orange accent-3"><i class="material-icons left">perm_identity</i>Login</a>
+          {% endif %}
+        </div>             
+      </div>
+    </div>
+  </main>
+</body>
+{% endblock %}

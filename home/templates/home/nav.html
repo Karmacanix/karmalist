@@ -10,7 +10,7 @@
             <li><a id="logo-container" href="{% url 'home' %}" class="brand-logo pulse" style='font-family: "Leckerli One", serif; text-shadow: 2px 2px 2px #4e342e;'>Karmacanix</a></li>
         </ul>
         <ul class="right hide-on-med-and-down">
-            <li><a class="waves-effect waves-light btn brown darken-2" href="#">Navbar Link</a></li>
+            <li><a class="waves-effect waves-light btn brown darken-2" href="{% url 'task_list' %}">Lists</a></li>
             {% if user.is_authenticated %}
                 <li><a class="waves-effect waves-light btn brown darken-2" href="{% url 'account_settings' %}"><i class="material-icons left">settings</i>Settings</a></li>
                 <li><a class="waves-effect waves-light btn brown darken-2" href="{% url 'logout' %}"><i class="material-icons left">exit_to_app</i>Sign out</a></li>

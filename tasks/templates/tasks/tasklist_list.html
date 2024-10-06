@@ -1,0 +1,31 @@
+{% extends "home/base.html" %}
+{% load static %}
+{# Load the tag library #}
+
+{# Load CSS and JavaScript #}
+{% block content %}
+<body>
+  <main>
+    <div class="container">
+      <div class="row">
+        <div class="container">
+          {% if user.is_authenticated %}
+          
+              <h3>Your Task Lists</h3>
+              <ul>
+                {% for ls in user_task_list %}
+                  <li><a href="{% url 'tasks' ls.id %}">{{ ls.id }}. {{ ls.title }}</a></li>
+                {% endfor %}
+              </ul>
+              
+           
+            
+          {% else %}
+            <a class="waves-effect waves-light btn-large deep-orange accent-3"><i class="material-icons left">perm_identity</i>Login</a>
+          {% endif %}
+        </div>             
+      </div>
+    </div>
+  </main>
+</body>
+{% endblock %}
